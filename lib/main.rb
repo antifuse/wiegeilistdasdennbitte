@@ -33,13 +33,13 @@ module Main
     # @param word [String]
     def reply( tweet, word )
       pct = rand(100)
-      @rclient.update("@#{tweet.user.screen_name} \n Das ist #{pct}% #{word}.\n#{"🟩"* ( pct / 10 )  + "⬜" * (10-( pct / 10))}", {:in_reply_to_status => tweet})
+      @rclient.update("@#{tweet.user.screen_name} \n Das ist #{pct}%#{word}.\n#{"🟩"* ( pct / 10 )  + "⬜" * (10-( pct / 10))}", {:in_reply_to_status => tweet})
     end
 
     # @param tweet [Twitter::Tweet] 
     def handle_tweet( tweet )
       raise ArgumentError.new "Not a tweet" unless tweet.is_a?(Twitter::Tweet)
-      match = tweet.text.downcase.match(/wie ((?:\w+ )+)ist das denn bitte/)
+      match = tweet.text.downcase.match(/wie((?: \w+)+) ist das denn bitte/)
       if match
         word = match.captures[0]
         reply(tweet, word)
