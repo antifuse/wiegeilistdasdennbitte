@@ -26,7 +26,7 @@ module Main
       @config = YAML.load(File.open("config.yml", "r").read)
       puts @config
       authorize
-      @client.filter(track: "ist das denn bitte", &method(:handle_tweet)) 
+      @client.filter(track: "ist das denn", &method(:handle_tweet)) 
     end
 
     # @param tweet [Twitter::Tweet] 
