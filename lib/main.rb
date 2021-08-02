@@ -39,7 +39,7 @@ module Main
     # @param tweet [Twitter::Tweet] 
     def handle_tweet( tweet )
       raise ArgumentError.new "Not a tweet" unless tweet.is_a?(Twitter::Tweet)
-      match = tweet.text.downcase.match(/wie((?: +[^.;!? ]+)+) +ist +das +denn(?:,? *bitte)?/)
+      match = tweet.text.downcase.match(/wie((?: +[^,.;!? ]+)+) +ist +das +denn(?:,? *bitte)?/)
       if match && !tweet.retweet?
         word = match.captures[0]
         reply(tweet, word)
